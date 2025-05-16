@@ -40,6 +40,16 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'cardImage',
+      title: 'Card Image',
+      description: 'Image that appears on the retreat card',
+      group: 'details',
+      type: 'image',
+      options: {
+        hotspot: true, // Enables image cropping
+      },
+    }),
+    defineField({
       name: 'range',
       description: 'Date range of the retreat (August 10th - August 12th for example',
       group: 'details',
