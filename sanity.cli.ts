@@ -1,7 +1,7 @@
 import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
-  studioHost: 'sacred-feminie-studio',
+  studioHost: 'sacred-feminine-studio',
   api: {
     projectId: 'n031luuh',
     dataset: 'production',

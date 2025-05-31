@@ -6,7 +6,7 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'Sacred Feminine',
+  title: 'Sacred Feminine Studio',
   studioHost: 'sacred-feminine-studio',
 
   projectId: 'n031luuh',
