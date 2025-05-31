@@ -1,5 +1,16 @@
 import eventType from './eventType'
 import resourceType from './resourceType'
 import retreatType from './retreatType'
+import checkoutPageType from './checkoutPageType'
+import {colorSchemeType, backgroundGradientType} from './colorSchemeType'
+import {paymentOptionType} from './paymentOptionType'
 
-export const schemaTypes = [retreatType, resourceType, eventType]
+export const schemaTypes = [
+  retreatType, 
+  resourceType, 
+  eventType, 
+  checkoutPageType,
+  colorSchemeType,
+  backgroundGradientType,
+  paymentOptionType
+]
