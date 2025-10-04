@@ -31,6 +31,10 @@ export default defineType({
       name: 'join',
       title: 'Want to Join?',
     },
+    {
+      name: 'lodgingCheckout',
+      title: 'Lodging & Checkout',
+    },
   ],
   fields: [
     defineField({
@@ -98,75 +102,31 @@ export default defineType({
       initialValue: '$1000',
     }),
     defineField({
-      name: 'detailsOne',
-      description: 'First Line of Details',
+      name: 'details',
+      description: 'Details information - you can write multiple sentences and they will display properly on separate lines',
       type: 'text',
       group: 'details',
+      rows: 8,
       initialValue:
-        'Our retreat will begin around 5PM the 13th, but you are welcome to arrive anytime after 4pm. The retreat will end at 2:30PM on the 15th, and we ask that all participants be there until that time.',
+        'Our retreat will begin around 5PM the 13th, but you are welcome to arrive anytime after 4pm. The retreat will end at 2:30PM on the 15th, and we ask that all participants be there until that time.\n\nEvery activity - group or solo - is not about adherence to a schedule or pleasing others, but we want to create an opportunity for you to listen to yourself, learning from your own heart and others around you.\n\nFor each retreat, a private facebook group is created - this can help retreat participants to get to knoweach other before the weekend and collaborate on transportation.',
     }),
     defineField({
-      name: 'detailsTwo',
-      description: 'Second Line of Details',
-      type: 'text',
-      group: 'details',
-      initialValue:
-        'Every activity - group or solo - is not about adherence to a schedule or pleasing others, but we want to create an opportunity for you to listen to yourself, learning from your own heart and others around you.',
-    }),
-    defineField({
-      name: 'detailsThree',
-      description: 'Third Line of Details',
-      type: 'text',
-      group: 'details',
-      initialValue:
-        'For each retreat, a private facebook group is created - this can help retreat participants to get to knoweach other before the weekend and collaborate on transportation.',
-    }),
-    defineField({
-      name: 'costOne',
-      description: 'First Line of Cost',
+      name: 'cost',
+      description: 'Cost information - you can write multiple sentences and they will display properly on separate lines',
       type: 'text',
       group: 'cost',
+      rows: 8,
       initialValue:
-        'Please let us know if making a single payment is an obstacle for you as we also have scholarships available. The cost of the retreat is $1000.00. Meals included are dinner the first night, and the breakfasts the following two days. There will be some fridge space for you to bring food for other meals, and also long breaks for you to get or prepare your own meals. We will have a wide variety of foods for the meals for those who are vegan, gluten free, etc.',
+        'Please let us know if making a single payment is an obstacle for you as we also have scholarships available. The cost of the retreat is $1000.00.\n\nMeals included are dinner the first night, and the breakfasts the following two days. There will be some fridge space for you to bring food for other meals, and also long breaks for you to get or prepare your own meals.\n\nWe will have a wide variety of foods for the meals for those who are vegan, gluten free, etc.',
     }),
     defineField({
-      name: 'costTwo',
-      description: 'Second Line of Cost',
-      type: 'text',
-      group: 'cost',
-      initialValue: 'The cost of the retreat is $1000.00',
-    }),
-    defineField({
-      name: 'costThree',
-      description: 'Third Line of Cost',
-      type: 'text',
-      group: 'cost',
-      initialValue:
-        'Meals included are dinner the first night, and the breakfasts the following two days. There will be some fridge space for you to bring food for other meals, and also long breaks for you to get or prepare your own meals.',
-    }),
-    defineField({
-      name: 'costFour',
-      description: 'Fourth Line of Cost',
-      type: 'text',
-      group: 'cost',
-      initialValue:
-        'We will have a wide variety of foods for the meals for those who are vegan, gluten free, etc.',
-    }),
-    defineField({
-      name: 'cancellationOne',
-      description: 'First Line of Cancellation',
+      name: 'cancellation',
+      description: 'Cancellation policy information - you can write multiple sentences and they will display properly on separate lines',
       type: 'text',
       group: 'cancellation',
+      rows: 8,
       initialValue:
-        ' Due to the vendor charges for processing payments plus all of the backend work we do to prepare, we are unable to offer refunds.',
-    }),
-    defineField({
-      name: 'cancellationTwo',
-      description: 'Second Line of Cancellation',
-      type: 'text',
-      group: 'cancellation',
-      initialValue:
-        'However, should you need to cancel for some reason, you are welcome to either gift your spot to someone, or exchange your spot with someone else.',
+        'Due to the vendor charges for processing payments plus all of the backend work we do to prepare, we are unable to offer refunds.\n\nHowever, should you need to cancel for some reason, you are welcome to either gift your spot to someone, or exchange your spot with someone else.',
     }),
     defineField({
       name: 'joinOne',
@@ -194,57 +154,85 @@ export default defineType({
     }),
 
     defineField({
-      name: 'prepOne',
-      description: 'First Line of Prep',
+      name: 'prep',
+      description: 'Retreat prep information - you can write multiple sentences and they will display properly on separate lines',
       type: 'text',
       group: 'prep',
+      rows: 8,
       initialValue:
-        'Upon registration, you’ll receive a welcome email that will provide details on how you can best prepare for the retreat. It will also include a very basic outline of what will happen over the course of the retreat.',
+        'Upon registration, you will receive a welcome email that will provide details on how you can best prepare for the retreat. It will also include a very basic outline of what will happen over the course of the retreat.\n\nWe will also ask you to provide any information about yourself that you feel you want to share so we can get to know you better and serve you well at the retreat.\n\nIf you requested an on site accommodations but there is no room left, or you prefer to arrange your own, there will be a facebook group that you can join once you have paid for your ticket or a deposit.',
     }),
     defineField({
-      name: 'prepTwo',
-      description: 'Second Line of Prep',
-      type: 'text',
-      group: 'prep',
-      initialValue:
-        'We’ll also ask you to provide any information about yourself that you feel you want to share so we can get to know you better and serve you well at the retreat.',
-    }),
-    defineField({
-      name: 'prepThree',
-      description: 'Third Line of Prep',
-      type: 'text',
-      group: 'prep',
-      initialValue:
-        'If you requested an on site accommodations but there is no room left, or you prefer to arrange your own, there will be a facebook group that you can join once you have paid for your ticket or a deposit.',
-    }),
-    defineField({
-      name: 'accomodationsOne',
-      description: 'First Line of Accomodations',
+      name: 'accommodations',
+      description: 'Accommodations information - you can write multiple sentences and they will display properly on separate lines',
       type: 'text',
       group: 'accommodations',
+      rows: 8,
       initialValue:
-        'We will have limited on site accommodations for those of you who are interested. This will be a "first come first serve” basis, so please let us know as soon as you can if you would like a bed on site. If you request a room in your email and there is space still available we will let you know. Here is the cost breakdown for an on-site room for the entirety of the retreat:',
+        'We will have limited on site accommodations for those of you who are interested. This will be a "first come first serve" basis, so please let us know as soon as you can if you would like a bed on site. If you request a room in your email and there is space still available we will let you know. Here is the cost breakdown for an on-site room for the entirety of the retreat:\n\n- $300 for a private room (2 beds available)\n- $200 for a shared room (4 beds available)\n- $50 for barn bed further away from the house (2 beds available)',
+    }),
+
+    // Lodging & Checkout Integration Fields
+    defineField({
+      name: 'slug',
+      title: 'URL Slug',
+      type: 'slug',
+      description: 'The URL path for this retreat (e.g., sacred-feminine-summer-2025)',
+      group: 'lodgingCheckout',
+      options: {
+        source: 'name',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'accomodationsTwo',
-      description: 'Second Line of Accomodations',
-      type: 'text',
-      group: 'accommodations',
-      initialValue: '- $300 for a private room (2 beds available)',
+      name: 'accessCode',
+      title: 'Access Code',
+      type: 'string',
+      description: 'Code required to access lodging and checkout pages for this retreat',
+      group: 'lodgingCheckout',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'accomodationsThree',
-      description: 'Third Line of Accomodations',
-      type: 'text',
-      group: 'accommodations',
-      initialValue: '- $200 for a shared room (4 beds available)',
+      name: 'lodgingOptions',
+      title: 'Available Lodging Options',
+      type: 'array',
+      group: 'lodgingCheckout',
+      description: 'Select which lodging options are available for this retreat',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'lodgingOption'}],
+        },
+      ],
     }),
     defineField({
-      name: 'accomodationsFour',
-      description: 'Fourth Line of Accomodations',
+      name: 'paymentOptions',
+      title: 'Payment Options',
+      type: 'array',
+      group: 'lodgingCheckout',
+      description: 'Configure payment options for this retreat',
+      of: [
+        {
+          type: 'paymentOption',
+        },
+      ],
+    }),
+    defineField({
+      name: 'checkoutDescription',
+      title: 'Checkout Page Description',
       type: 'text',
-      group: 'accommodations',
-      initialValue: '- $50 for barn bed further away from the house (2 beds available)',
+      description: 'Description that appears on the checkout page',
+      group: 'lodgingCheckout',
+      rows: 3,
+    }),
+    defineField({
+      name: 'isLodgingCheckoutActive',
+      title: 'Enable Integrated Lodging & Checkout',
+      type: 'boolean',
+      description: 'Toggle to enable the new integrated lodging and checkout flow',
+      group: 'lodgingCheckout',
+      initialValue: false,
     }),
   ],
 })
