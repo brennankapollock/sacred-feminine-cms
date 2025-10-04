@@ -6,6 +6,10 @@ export default defineType({
   title: 'Event',
   type: 'document',
   icon: CalendarIcon,
+  // Default new events to have ticket button disabled
+  initialValue: {
+    enableTicketButton: false,
+  },
   groups: [
     {
       name: 'details',
@@ -81,6 +85,35 @@ export default defineType({
       group: 'cost',
       initialValue:
         'Please let us know if making a single payment is an obstacle for you as we also have scholarships available. The cost of the retreat is $1000.00. Meals included are dinner the first night, and the breakfasts the following two days. There will be some fridge space for you to bring food for other meals, and also long breaks for you to get or prepare your own meals. We will have a wide variety of foods for the meals for those who are vegan, gluten free, etc.',
+    }),
+
+    // Optional: display remaining spots, if applicable
+    defineField({
+      name: 'spots',
+      title: 'Spots',
+      type: 'number',
+      description: 'Optional: number of spots available to display "X spots left".',
+      group: 'details',
+    }),
+
+    // Optional: external ticket URL for events that use a third-party checkout
+    defineField({
+      name: 'ticketUrl',
+      title: 'External Ticket URL',
+      type: 'url',
+      group: 'cost',
+      description: 'External ticket/payment link; optional.',
+      validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
+    }),
+
+    // Controls whether the UI shows the "Get Tickets" button
+    defineField({
+      name: 'enableTicketButton',
+      title: 'Enable Ticket Button',
+      type: 'boolean',
+      group: 'cost',
+      description: 'If true and a valid ticketUrl is set, the site will show a "Get Tickets" button for this event.',
+      initialValue: false,
     }),
   ],
 })
