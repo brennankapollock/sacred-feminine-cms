@@ -6,30 +6,31 @@ export default defineType({
   title: 'Event',
   type: 'document',
   icon: CalendarIcon,
-  // Default new events to have the ticket button enabled
-  initialValue: {
-    enableTicketButton: true,
-  },
   groups: [
     {
       name: 'details',
       title: 'Details',
     },
     {
+      name: 'schedule',
+      title: 'Schedule',
+    },
+    {
       name: 'cost',
       title: 'Cost',
     },
     {
-      name: 'ticketing',
-      title: 'Ticketing',
+      name: 'checkout',
+      title: 'Checkout',
     },
   ],
   fields: [
     defineField({
       name: 'name',
-      description: 'Name of the event',
+      title: 'Event Name',
       group: 'details',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -45,100 +46,76 @@ export default defineType({
     }),
     defineField({
       name: 'startDate',
-      description: 'Start date of the event',
-      group: 'details',
-
+      title: 'Start Date',
+      group: 'schedule',
       type: 'date',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'endDate',
-      description: 'End date of the event',
-      group: 'details',
-
+      title: 'End Date',
+      group: 'schedule',
       type: 'date',
     }),
     defineField({
       name: 'startTime',
-      description: 'Start time of the event',
-      group: 'details',
-
+      title: 'Start Time',
       type: 'string',
+      group: 'schedule',
     }),
     defineField({
       name: 'endTime',
-      description: 'End time of the event',
-      group: 'details',
-
+      title: 'End Time',
       type: 'string',
-    }),
-    defineField({
-      name: 'location',
-      description: 'Location of the event',
-      group: 'details',
-
-      type: 'string',
+      group: 'schedule',
     }),
     defineField({
       name: 'price',
-      description: 'Price in USD',
+      title: 'Ticket Price',
+      description: 'Displayed cost for the event (e.g., "$125")',
       type: 'string',
       group: 'cost',
-      initialValue: '$1000',
+      validation: (Rule) => Rule.required(),
     }),
+
     defineField({
-      name: 'details',
-      description: 'details',
+      name: 'checkoutDescription',
+      title: 'Checkout Page Description',
       type: 'text',
-      group: 'details',
-      initialValue:
-        'Our retreat will begin around 5PM the 13th, but you are welcome to arrive anytime after 4pm. The retreat will end at 2:30PM on the 15th, and we ask that all participants be there until that time.',
-    }),
-
-    defineField({
-      name: 'costOne',
-      description: 'First Line of Cost',
-      type: 'text',
-      group: 'cost',
-      initialValue:
-        'Please let us know if making a single payment is an obstacle for you as we also have scholarships available. The cost of the retreat is $1000.00. Meals included are dinner the first night, and the breakfasts the following two days. There will be some fridge space for you to bring food for other meals, and also long breaks for you to get or prepare your own meals. We will have a wide variety of foods for the meals for those who are vegan, gluten free, etc.',
-    }),
-
-    // Optional: display remaining spots, if applicable
-    defineField({
-      name: 'spots',
-      title: 'Spots',
-      type: 'number',
-      description: 'Optional: number of spots available to display "X spots left".',
-      group: 'details',
-    }),
-
-    defineField({
-      name: 'checkoutSlug',
-      title: 'Checkout Slug Override',
-      type: 'slug',
-      group: 'ticketing',
-      description: 'Optional override applied before falling back to the event slug.',
-      options: {
-        source: 'slug',
-        maxLength: 96,
-      },
+      rows: 3,
+      group: 'checkout',
+      description: 'Optional description displayed above the payment options.',
     }),
     defineField({
-      name: 'checkoutPage',
-      title: 'Checkout Page',
-      type: 'reference',
-      group: 'ticketing',
-      to: [{type: 'checkoutPage'}],
-      description: 'Link to a reusable checkout page whose slug will power the ticket CTA.',
+      name: 'paymentOptions',
+      title: 'Payment Options',
+      type: 'array',
+      group: 'checkout',
+      of: [{type: 'paymentOption'}],
+      validation: (Rule) => Rule.required().min(1),
     }),
-
-    // Controls whether the UI shows the "Get Tickets" button
+    defineField({
+      name: 'contactEmail',
+      title: 'Support Email',
+      type: 'email',
+      group: 'checkout',
+      initialValue: 'team@sacredfeminine.co',
+    }),
+    defineField({
+      name: 'isCheckoutActive',
+      title: 'Enable Checkout',
+      type: 'boolean',
+      group: 'checkout',
+      description: 'Disable to temporarily turn off ticket sales for this event.',
+      initialValue: true,
+    }),
     defineField({
       name: 'enableTicketButton',
-      title: 'Enable Ticket Button',
+      title: 'Show Ticket Button',
       type: 'boolean',
-      group: 'ticketing',
-      description: 'Set to false to hide the ticket button even if a slug is available.',
+      group: 'checkout',
+      description: 'Set to false to hide the ticket button even if checkout is active.',
+      initialValue: true,
     }),
   ],
 })
