@@ -6,9 +6,9 @@ export default defineType({
   title: 'Event',
   type: 'document',
   icon: CalendarIcon,
-  // Default new events to have ticket button disabled
+  // Default new events to have the ticket button enabled
   initialValue: {
-    enableTicketButton: false,
+    enableTicketButton: true,
   },
   groups: [
     {
@@ -19,6 +19,10 @@ export default defineType({
       name: 'cost',
       title: 'Cost',
     },
+    {
+      name: 'ticketing',
+      title: 'Ticketing',
+    },
   ],
   fields: [
     defineField({
@@ -26,6 +30,18 @@ export default defineType({
       description: 'Name of the event',
       group: 'details',
       type: 'string',
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Event Slug',
+      type: 'slug',
+      description: 'URL slug used for event pages and ticket links',
+      group: 'details',
+      options: {
+        source: 'name',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'startDate',
@@ -96,14 +112,24 @@ export default defineType({
       group: 'details',
     }),
 
-    // Optional: external ticket URL for events that use a third-party checkout
     defineField({
-      name: 'ticketUrl',
-      title: 'External Ticket URL',
-      type: 'url',
-      group: 'cost',
-      description: 'External ticket/payment link; optional.',
-      validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
+      name: 'checkoutSlug',
+      title: 'Checkout Slug Override',
+      type: 'slug',
+      group: 'ticketing',
+      description: 'Optional override applied before falling back to the event slug.',
+      options: {
+        source: 'slug',
+        maxLength: 96,
+      },
+    }),
+    defineField({
+      name: 'checkoutPage',
+      title: 'Checkout Page',
+      type: 'reference',
+      group: 'ticketing',
+      to: [{type: 'checkoutPage'}],
+      description: 'Link to a reusable checkout page whose slug will power the ticket CTA.',
     }),
 
     // Controls whether the UI shows the "Get Tickets" button
@@ -111,9 +137,8 @@ export default defineType({
       name: 'enableTicketButton',
       title: 'Enable Ticket Button',
       type: 'boolean',
-      group: 'cost',
-      description: 'If true and a valid ticketUrl is set, the site will show a "Get Tickets" button for this event.',
-      initialValue: false,
+      group: 'ticketing',
+      description: 'Set to false to hide the ticket button even if a slug is available.',
     }),
   ],
 })
